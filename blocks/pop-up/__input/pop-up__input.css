@@ -1,0 +1,17 @@
+.pop-up__input {
+  padding: 0;
+  width: 358px;
+  border: 0;
+  border-bottom: 1px solid #bcbcc4;
+  margin-bottom: 30px;
+}
+
+.pop-up__input:focus {
+  outline: none;
+}
+
+@media (max-width: 767px) {
+  .pop-up__input {
+    width: 238px;
+  }
+}
