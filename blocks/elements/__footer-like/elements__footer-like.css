@@ -1,4 +1,4 @@
-.elements__footer_like {
+.elements__footer-like {
   padding: 0;
   border: 0;
   appearance: none;
@@ -10,10 +10,10 @@
   transition: opacity 0.2s ease 0.1s;
 }
 
-.elements__footer_like:hover {
+.elements__footer-like:hover {
   opacity: 0.5;
 }
 
-.elements__footer_like:active {  
+.elements__footer-like:active {  
   background-image: url(../../../images/like_active.svg);
 }

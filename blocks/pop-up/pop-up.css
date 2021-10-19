@@ -1,4 +1,4 @@
-.pop-up__overlay {
+.pop-up {
   position: fixed;
   top: 0;
   left: 0;
@@ -9,3 +9,7 @@
   justify-content: center;
   align-items: center;
 }
+
+/*.pop-up_hidden {
+  display: none;
+}*/

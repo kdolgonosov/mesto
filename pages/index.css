@@ -16,12 +16,12 @@
 @import url(../blocks/elements/__item/elements__item.css);
 @import url(../blocks/elements/__picture/elements__picture.css);
 @import url(../blocks/elements/__footer/elements__footer.css);
-@import url(../blocks/elements/__footer_wrapper/elements__footer_wrapper.css);
-@import url(../blocks/elements/__footer_caption/elements__footer_caption.css);
-@import url(../blocks/elements/__footer_like/elements__footer_like.css);
+@import url(../blocks/elements/__footer-wrapper/elements__footer-wrapper.css);
+@import url(../blocks/elements/__footer-caption/elements__footer-caption.css);
+@import url(../blocks/elements/__footer-like/elements__footer-like.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__author/footer__author.css);
-@import url(../blocks/pop-up/__overlay/pop-up__overlay.css);
+@import url(../blocks/pop-up/pop-up.css);
 @import url(../blocks/pop-up/__close-btn/pop-up__close-btn.css);
 @import url(../blocks/pop-up/__container/pop-up__container.css);
 @import url(../blocks/pop-up/__title/pop-up__title.css);
