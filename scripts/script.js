@@ -4,30 +4,26 @@ let hidePopUpBtn = document.querySelector('.pop-up__close-btn')
 let saveInfoBtn = document.querySelector('.pop-up__submit-btn')
 let inputName = document.querySelector('.pop-up__input_type_name')
 let inputProfession = document.querySelector('.pop-up__input_type_profession')
-
-inputName.value = 'Жак-Ив Кусто'
-inputProfession.value = 'Исследователь океана'
+let itemName = document.querySelector('.profile__info-item-name')
+let itemProfession = document.querySelector('.profile__info-item-profession')
 
 function showPopUp () {
-  popUp.classList.remove('pop-up_hidden')
-  document.querySelector('.main').classList.add('main__scroll-lock')
+  inputName.value = itemName.textContent
+  inputProfession.value = itemProfession.textContent
+  popUp.classList.add('pop-up_shown')
 }
 
 function hidePopUp () {
-  popUp.classList.add('pop-up_hidden')
-  document.querySelector('.pop-up__input_type_name').value = document.querySelector('.profile__info-item-name').textContent
-  document.querySelector('.pop-up__input_type_profession').value = document.querySelector('.profile__info-item-profession').textContent
-  document.querySelector('.main').classList.remove('main__scroll-lock')
+  popUp.classList.remove('pop-up_shown')
+  inputName.value = ''
+  inputName.value = ''
 }
 
 function editInfo() {
-  let inputName = document.querySelector('.pop-up__input_type_name')
-  let inputProfession = document.querySelector('.pop-up__input_type_profession')
-  document.querySelector('.profile__info-item-name').textContent = `${inputName.value}`  
-  document.querySelector('.profile__info-item-profession').textContent = `${inputProfession.value}`
+  itemName.textContent = `${inputName.value}`  
+  itemProfession.textContent = `${inputProfession.value}`
   hidePopUp()
 }
 
 showPopUpBtn.addEventListener('click', showPopUp);
 hidePopUpBtn.addEventListener('click', hidePopUp);
-saveInfoBtn.addEventListener('click', editInfo);

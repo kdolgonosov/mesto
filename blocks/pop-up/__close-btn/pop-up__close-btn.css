@@ -2,9 +2,9 @@
   width: 32px;
   height: 32px;
   background-size: cover;
-  position: absolute;
-  top: calc(50vh - 197px);
-  left: calc(50vw + 215px);
+  position: relative;
+  top: calc(-32px - 8px);
+  left: calc(50% + 16px + 8px);
   padding: 0;
   border: 0;
   appearance: none;
@@ -23,8 +23,8 @@
   .pop-up__close-btn {
     width: 20px;
     height: 20px;
-    top: calc(50vh - 197px);
-    left: calc(50vw + 122px);
+    top: calc(-20px - 16px);
+    left: calc(50% - 10px);
   }
 }
 

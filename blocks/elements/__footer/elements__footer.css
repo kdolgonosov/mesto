@@ -1,9 +1,10 @@
 .elements__footer {
   background-color: #fff;
   border-radius: 0 0 10px 10px;
-  max-width: 100%;
-  min-height: 79px;
+  width: 100%;
+  max-height: 79px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
 }

@@ -1,6 +1,7 @@
 .header {
   padding-top: 45px;
-  margin: 0 200px 0;
+  /*margin: 0 200px 0;*/
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   max-width: 880px;
@@ -9,7 +10,7 @@
 
 .header:after {
   content: '';
-  background-color: white;
+  background-color: #545454;
   height: 1px;
   max-width: 880px;
   display: block;

@@ -20,7 +20,7 @@
   .profile__edit-button {
     background-size: cover;
     position: absolute;
-    top: 290px;
+    top: 286px;
     left: calc(50vw + 174px);
     margin: 0;
   }
@@ -29,7 +29,7 @@
   .profile__edit-button {
     width: 18px;
     height: 18px;
-    top: 283.5px;
+    top: 279.5px;
     left: calc(50vw + 102.5px);
   }
 }

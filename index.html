@@ -18,62 +18,50 @@
           <h1 class="profile__info-item-name">Жак-Ив Кусто</h1>
           <h2 class="profile__info-item-profession">Исследователь океана</h2>
         </div>
-        <button class="profile__edit-button"></button>        
-        <button class="profile__add-button"></button>
+        <button class="profile__edit-button" type="button"></button>        
+        <button class="profile__add-button" type="button"></button>
       </section>
       <section class="elements">
         <div class="elements__item">
           <img src="images/elements_1.jpg" alt="Карачаевск" class="elements__picture">
-          <div class="elements__footer">
-            <div class="elements__footer-wrapper">
-              <h4 class="elements__footer-caption">Карачаевск</h4>
-              <button class="elements__footer-like"></button>
-            </div>
+          <div class="elements__footer">            
+            <h4 class="elements__footer-caption">Карачаевск</h4>
+            <button class="elements__footer-like" type="button"></button>
           </div>
         </div>
         <div class="elements__item">
           <img src="images/elements_2.jpg" alt="Гора Эльбрус" class="elements__picture">
           <div class="elements__footer">
-            <div class="elements__footer-wrapper">
-              <h4 class="elements__footer-caption">Гора Эльбрус</h4>
-              <button class="elements__footer-like"></button>
-            </div>
+            <h4 class="elements__footer-caption">Гора Эльбрус</h4>
+            <button class="elements__footer-like" type="button"></button>
           </div>
         </div>
         <div class="elements__item">
           <img src="images/elements_3.jpg" alt="Домбай" class="elements__picture">
           <div class="elements__footer">
-            <div class="elements__footer-wrapper">
-              <h4 class="elements__footer-caption">Домбай</h4>
-              <button class="elements__footer-like"></button>
-            </div>
+            <h4 class="elements__footer-caption">Домбай</h4>
+            <button class="elements__footer-like" type="button"></button>
           </div>
         </div>
         <div class="elements__item">
           <img src="images/elements_4.jpg" alt="Гора Эльбрус" class="elements__picture">
           <div class="elements__footer">
-            <div class="elements__footer-wrapper">
-              <h4 class="elements__footer-caption">Гора Эльбрус</h4>
-              <button class="elements__footer-like"></button>
-            </div>
+            <h4 class="elements__footer-caption">Гора Эльбрус</h4>
+            <button class="elements__footer-like" type="button"></button>
           </div>
         </div>
         <div class="elements__item">
           <img src="images/elements_5.jpg" alt="Домбай" class="elements__picture">
           <div class="elements__footer">
-            <div class="elements__footer-wrapper">
-              <h4 class="elements__footer-caption">Домбай</h4>
-              <button class="elements__footer-like"></button>
-            </div>
+            <h4 class="elements__footer-caption">Домбай</h4>
+            <button class="elements__footer-like" type="button"></button>
           </div>
         </div>
         <div class="elements__item">
           <img src="images/elements_6.jpg" alt="Карачаево-Черкесия" class="elements__picture">
           <div class="elements__footer">
-            <div class="elements__footer-wrapper">
-              <h4 class="elements__footer-caption">Карачаево-Черкесия</h4>
-              <button class="elements__footer-like"></button>
-            </div>
+            <h4 class="elements__footer-caption">Карачаево-Черкесия</h4>
+            <button class="elements__footer-like" type="button"></button>
           </div>
         </div>
       </section>
@@ -82,13 +70,15 @@
       <p class="footer__author">&copy;&#160;2021&#160;Mesto&#160;Russia</p>
     </footer>
     <!-- POP-UP -->
-    <div class="pop-up pop-up_hidden">
-      <button class="pop-up__close-btn"></button>
-      <div class="pop-up__container">        
+    <div class="pop-up">      
+      <div class="pop-up__container">
+        <button class="pop-up__close-btn" type="button"></button>    
         <h3 class="pop-up__title">Редактировать профиль</h3>
-        <input type="text" class="pop-up__input pop-up__input_type_name">
-        <input type="text" class="pop-up__input pop-up__input_type_profession">
-        <button class="pop-up__submit-btn">
+        <form class ="pop-up__form" onsubmit="editInfo(); return false">
+          <input type="text" class="pop-up__input pop-up__input_type_name" name="inputName">
+          <input type="text" class="pop-up__input pop-up__input_type_profession" name="inputProfession">
+          <button class="pop-up__submit-btn" type="submit">
+        </form>
           Сохранить
         </button>
       </div>
