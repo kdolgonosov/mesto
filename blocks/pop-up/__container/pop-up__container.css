@@ -9,7 +9,8 @@
 }
 
 .pop-up_shown {
-  display: flex;
+  visibility: visible;
+  opacity: 1;
 }
 
 @media (max-width: 767px) {

@@ -16,6 +16,6 @@
   opacity: 0.5;
 }
 
-.elements__footer-like:active {  
+.elements__footer-like-active {  
   background-image: url(../../../images/like_active.svg);
 }
