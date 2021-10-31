@@ -7,9 +7,7 @@ const showPopUpAddBtn = document.querySelector('.profile__add-button')
 
 const hidePopUpEditBtn = document.querySelector('.pop-up-edit-close-btn')
 const hidePopUpAddBtn = document.querySelector('.pop-up-add-close-btn')
-const hidePopUpPicture = document.querySelector('.pop-up-picture-close-btn')
-
-
+const hidePopUpPictureBtn = document.querySelector('.pop-up-picture-close-btn')
 
 const inputName = document.querySelector('.pop-up__input_type_name')
 const inputProfession = document.querySelector('.pop-up__input_type_profession')
@@ -20,7 +18,6 @@ const itemProfession = document.querySelector('.profile__info-item-profession')
 
 const editForm = document.querySelector('.editForm')
 const addForm = document.querySelector('.addForm')
-
 
 const elementsContainer = document.querySelector('.elements')
 const elementsItemTemplate = document.querySelector('#elementsItem').content;
@@ -52,100 +49,86 @@ const initialCards = [
   }
 ];
 
+function createCard (caption, url) {
+  const elementsItemElement = elementsItemTemplate.querySelector('.elements__item').cloneNode(true)
+  elementsItemElement.querySelector('.elements__picture').src = url
+  elementsItemElement.querySelector('.elements__picture').alt = caption
+  elementsItemElement.querySelector('.elements__footer-caption').textContent = caption
+
+  elementsItemElement.querySelector('.elements__footer-like').addEventListener('click', (evt) => {
+    const eventTarget = evt.target
+    eventTarget.classList.toggle('elements__footer-like-active')
+  })
+  elementsItemElement.querySelector('.elements__delete-btn').addEventListener('click', (evt) => {
+    const eventTarget = evt.target.closest('.elements__item')
+    eventTarget.remove()
+  })
+  elementsItemElement.querySelector('.elements__picture').addEventListener('click', (evt) => {
+    const pictureUrl = evt.target.src
+    const pictureCaption = evt.target.nextElementSibling.firstElementChild.textContent
+    popUpPicture.querySelector('.pop-up__illustration').src = pictureUrl
+    popUpPicture.querySelector('.pop-up__illustration').alt = pictureCaption
+    popUpPicture.querySelector('.pop-up__caption').textContent = pictureCaption
+    showPopUp(popUpPicture)
+  })
+
+  return elementsItemElement
+}
+
 function initialLoad() {
-  initialCards.forEach(e => {
-    const elementsItemElement = elementsItemTemplate.querySelector('.elements__item').cloneNode(true)
-    elementsItemElement.querySelector('.elements__picture').src = e.link
-    elementsItemElement.querySelector('.elements__picture').alt = e.name
-    elementsItemElement.querySelector('.elements__footer-caption').textContent = e.name  
-    elementsContainer.append(elementsItemElement)
-    
+  initialCards.forEach(e => { 
+    elementsContainer.append(createCard(e.name, e.link))
   })
-  setEventListeners()
-}
-function setEventListeners() {
-  const likeBtns = document.querySelectorAll('.elements__footer-like')
-  likeBtns.forEach(e => {
-    e.addEventListener('click', (evt) => {
-      const eventTarget = evt.target
-      eventTarget.classList.toggle('elements__footer-like-active')
-    })
-  })
-
-  const deleteBtns = document.querySelectorAll('.elements__delete-btn')
-  deleteBtns.forEach(e => {
-    e.addEventListener('click', (evt) => {
-      const eventTarget = evt.target.closest('.elements__item')
-      eventTarget.remove()
-    })
-  })
-  const pictures = document.querySelectorAll('.elements__picture')
-  pictures.forEach(e => {
-    e.addEventListener('click', (evt) => {
-      const pictureUrl = evt.target.src
-      const pictureCaption = evt.target.nextElementSibling.firstElementChild.textContent
-      console.log(pictureUrl)
-      console.log(pictureCaption)
-      showPopUpPicture(pictureUrl, pictureCaption)
-    })
-  })
-}
-
-
-function showPopUpPicture (url, caption) {
-  popUpPicture.querySelector('.pop-up__illustration').src = url
-  popUpPicture.querySelector('.pop-up__illustration').alt = caption
-  popUpPicture.querySelector('.pop-up__caption').textContent = caption
-  popUpPicture.classList.add('pop-up_shown')
 }
 
 function showPopUp (target) {
-  if (target == popUpEdit) {
-    inputName.value = itemName.textContent
-    inputProfession.value = itemProfession.textContent
-  }
   target.classList.add('pop-up_shown')
 }
 
 function hidePopUp (target) {
   target.classList.remove('pop-up_shown')
-  if (target == popUpEdit) {
-    inputName.value = ''
-    inputName.value = ''
-  } else if (target == popUpAdd) {
-    inputTitle.value = ''
-    inputUrl.value = ''
-  } else {
-    return
-  }
+  
 }
 
-function editInfo() {
+function editInfo(event) {
   event.preventDefault()
   itemName.textContent = `${inputName.value}`  
   itemProfession.textContent = `${inputProfession.value}`
   hidePopUp(popUpEdit)
 }
 
-function addElementsItem() {
+function addElementsItem(event) {
   event.preventDefault()
-  const elementsItemElement = elementsItemTemplate.querySelector('.elements__item').cloneNode(true)
-  elementsItemElement.querySelector('.elements__picture').src = inputUrl.value
-  elementsItemElement.querySelector('.elements__picture').alt = inputTitle.value
-  elementsItemElement.querySelector('.elements__footer-caption').textContent = inputTitle.value
-  elementsContainer.prepend(elementsItemElement)
-  setEventListeners()
+  const newCard = createCard(inputTitle.value, inputUrl.value)
+  elementsContainer.prepend(newCard)
   hidePopUp(popUpAdd)
+  inputTitle.value = ''
+  inputUrl.value = ''
 }
 
 initialLoad()
 
-showPopUpEditBtn.addEventListener('click', showPopUp.bind(null, popUpEdit));
-showPopUpAddBtn.addEventListener('click', showPopUp.bind(null, popUpAdd));
+showPopUpEditBtn.addEventListener('click', () => {  
+  inputName.value = itemName.textContent
+  inputProfession.value = itemProfession.textContent
+  showPopUp(popUpEdit)
+});
 
-hidePopUpEditBtn.addEventListener('click', hidePopUp.bind(null, popUpEdit));
-hidePopUpAddBtn.addEventListener('click', hidePopUp.bind(null, popUpAdd));
-hidePopUpPicture.addEventListener('click', hidePopUp.bind(null, popUpPicture));
+showPopUpAddBtn.addEventListener('click', () => {
+  showPopUp(popUpAdd)  
+});
+
+hidePopUpEditBtn.addEventListener('click', () => {
+  hidePopUp(popUpEdit)
+});
+
+hidePopUpAddBtn.addEventListener('click', () => {
+  hidePopUp(popUpAdd)
+});
+
+hidePopUpPictureBtn.addEventListener('click', () => {
+  hidePopUp(popUpPicture)
+});
 
 editForm.addEventListener('submit', editInfo);
 addForm.addEventListener('submit', addElementsItem);
