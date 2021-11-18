@@ -15,6 +15,12 @@
   transition: opacity 0.2s ease 0.1s;
 }
 
+.pop-up__submit-btn_disabled {
+  background-color: transparent;
+  color: #bcbcc4;
+  border: 1px solid #bcbcc4;
+}
+
 .pop-up__submit-btn:hover {
   opacity: 0.6;
 }
