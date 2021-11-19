@@ -1,3 +1,12 @@
+const config = {
+  formSelector: '.pop-up__form',
+  inputSelector: '.pop-up__input',
+  submitButtonSelector: '.pop-up__submit-btn',
+  inactiveButtonClass: 'pop-up__submit-btn_disabled',
+  inputErrorClass: 'pop-up__input_type_error',
+  errorClass: 'pop-up__error_visible'
+}
+
 const enableValidation = function({formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass}) {
   const forms = Array.from(document.querySelectorAll(formSelector))
   forms.forEach(form => {
@@ -58,11 +67,4 @@ const setEventListeners = (form, inputSelector, submitButtonSelector, inactiveBu
   toggleButtonState(inputs, submitButton, inactiveButtonClass)
 }
 
-enableValidation({
-  formSelector: '.pop-up__form',
-  inputSelector: '.pop-up__input',
-  submitButtonSelector: '.pop-up__submit-btn',
-  inactiveButtonClass: 'pop-up__submit-btn_disabled',
-  inputErrorClass: 'pop-up__input_type_error',
-  errorClass: 'pop-up__error_visible'
-});
+enableValidation(config);

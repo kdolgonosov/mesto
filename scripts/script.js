@@ -107,20 +107,42 @@ function addElementsItem(event) {
   const newCard = createCard(inputTitle.value, inputUrl.value)
   elementsContainer.prepend(newCard)
   hidePopUp(popUpAdd)
-  inputTitle.value = ''
-  inputUrl.value = ''
+  addForm.reset()
 }
+
+const keyEscHandler = (evt) => {
+  if(evt.key === 'Escape') {
+    hidePopUp(document.querySelector('.pop-up_shown'))
+  }
+}
+
+const mouseHandler = (evt) => {
+  hidePopUp(evt.target)
+}
+
+function resetValidation(form) {
+  form.querySelector('.pop-up__submit-btn').classList.add('pop-up__submit-btn_disabled')
+  form.querySelector('.pop-up__submit-btn').setAttribute('disabled', 1)
+  Array.from(form.querySelectorAll('.pop-up__input')).forEach((input) => {
+    hideError(input, 'pop-up__error_visible')
+    input.classList.remove('pop-up__input_type_error')
+  })
+}
+
 
 initialLoad()
 
 showPopUpEditBtn.addEventListener('click', () => {  
   inputName.value = itemName.textContent
   inputProfession.value = itemProfession.textContent
+  resetValidation(editForm)
   showPopUp(popUpEdit)
 });
 
 showPopUpAddBtn.addEventListener('click', () => {
-  showPopUp(popUpAdd)  
+  addForm.reset()
+  resetValidation(addForm)
+  showPopUp(popUpAdd)
 });
 
 hidePopUpEditBtn.addEventListener('click', () => {
@@ -139,15 +161,3 @@ editForm.addEventListener('submit', editInfo);
 addForm.addEventListener('submit', addElementsItem);
 
 
-
-
-//НОВЫЙ КОД//
-const keyEscHandler = (evt) => {
-  if(evt.key === 'Escape') {
-    hidePopUp(document.querySelector('.pop-up_shown'))
-  }
-}
-
-const mouseHandler = (evt) => {
-  hidePopUp(evt.target)
-}

@@ -1,10 +1,11 @@
 .pop-up__error {
-  display: none;
+  height: 30px;
+  display: block;
+  visibility: hidden;
   color: #FF0000;
   font-size: 12px;
   line-height: 15px;
-  margin-top: -15px;
 }
 .pop-up__error_visible {
-  display: block;
+  visibility: visible;
 }

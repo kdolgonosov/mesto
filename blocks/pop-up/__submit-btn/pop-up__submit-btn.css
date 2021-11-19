@@ -8,7 +8,7 @@
   background-color: black;
   cursor: pointer;
   color: white;
-  margin-top: 27px;
+  margin-top: 12px;
   font-size: 18px;
   line-height: 21.78px;
   font-weight: 400;
@@ -16,6 +16,7 @@
 }
 
 .pop-up__submit-btn_disabled {
+  cursor: default;
   background-color: transparent;
   color: #bcbcc4;
   border: 1px solid #bcbcc4;
@@ -23,6 +24,10 @@
 
 .pop-up__submit-btn:hover {
   opacity: 0.6;
+}
+
+.pop-up__submit-btn_disabled:hover {
+  opacity: 1;
 }
 
 @media (max-width: 767px) {
