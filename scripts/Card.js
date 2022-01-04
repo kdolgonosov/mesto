@@ -1,3 +1,5 @@
+import {showPopUp} from './utils.js'
+
 export default class Card {
   constructor(data, template) {
     this._title = data.name
@@ -15,6 +17,7 @@ export default class Card {
     return elementsItemElement
   }
 
+
   _handleLike(evt) {
     const eventTarget = evt.target
     eventTarget.classList.toggle('elements__footer-like-active')
@@ -25,9 +28,20 @@ export default class Card {
     eventTarget.remove()
   }
 
+  _handleZoom(evt) {
+    const pictureUrl = evt.target.src
+    const pictureCaption = evt.target.nextElementSibling.firstElementChild.textContent
+    document.querySelector('.pop-up_type_picture').querySelector('.pop-up__illustration').src = pictureUrl
+    document.querySelector('.pop-up_type_picture').querySelector('.pop-up__illustration').alt = pictureCaption
+    document.querySelector('.pop-up_type_picture').querySelector('.pop-up__caption').textContent = pictureCaption
+    
+    showPopUp(document.querySelector('.pop-up_type_picture'))
+  }
+
   _setEventListeners() {
     this._card.querySelector('.elements__footer-like').addEventListener('click', this._handleLike)
     this._card.querySelector('.elements__delete-btn').addEventListener('click', this._handleDelete)
+    this._card.querySelector('.elements__picture').addEventListener('click', this._handleZoom)
     }
 
   createCard() {

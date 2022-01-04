@@ -3,12 +3,17 @@ import FormValidator from './FormValidator.js'
 import {popUpEdit, popUpAdd, popUpPicture, showPopUpEditBtn, showPopUpAddBtn, hidePopUpEditBtn, hidePopUpAddBtn, hidePopUpPictureBtn, 
         inputName, inputProfession, inputTitle, inputUrl, itemName, itemProfession, editForm, addForm, elementsContainer,
         initialCards, config} from './constants.js'
+import {showPopUp, hidePopUp} from './utils.js'
 
+function createCard(e) {
+  const card = new Card(e, '#elementsItem')
+  const cardElement = card.createCard()
+  return cardElement
+}
 
 function initialLoad() {
   initialCards.forEach(e => {
-    const card = new Card(e, '#elementsItem')
-    const cardElement = card.createCard()
+    const cardElement = createCard(e)
     elementsContainer.append(cardElement)
   })
 }
@@ -17,18 +22,6 @@ const editFormValidation = new FormValidator(config, editForm)
 editFormValidation.enableValidation()
 const addFormValidation = new FormValidator(config, addForm)
 addFormValidation.enableValidation()
-
-function showPopUp (target) {
-  target.classList.add('pop-up_shown')
-  document.addEventListener('keydown', keyEscHandler)
-  target.addEventListener('click', mouseHandler)
-}
-
-function hidePopUp (target) {
-  target.classList.remove('pop-up_shown')
-  document.removeEventListener('keydown', keyEscHandler)
-  target.removeEventListener('click', mouseHandler)  
-}
 
 function editInfo(event) {
   event.preventDefault()
@@ -42,21 +35,10 @@ function addElementsItem(event) {
   const inputData = []
   inputData.name = inputTitle.value
   inputData.link = inputUrl.value
-  const newCard = new Card(inputData, '#elementsItem')
-  const cardElement = newCard.createCard()
+  const cardElement = createCard(inputData)
   elementsContainer.prepend(cardElement)
   hidePopUp(popUpAdd)
   addForm.reset()
-}
-
-const keyEscHandler = (evt) => {
-  if(evt.key === 'Escape') {
-    hidePopUp(document.querySelector('.pop-up_shown'))
-  }
-}
-
-const mouseHandler = (evt) => {
-  hidePopUp(evt.target)
 }
 
 initialLoad()
@@ -85,6 +67,7 @@ hidePopUpAddBtn.addEventListener('click', () => {
 hidePopUpPictureBtn.addEventListener('click', () => {
   hidePopUp(popUpPicture)
 });
+
 
 editForm.addEventListener('submit', editInfo);
 addForm.addEventListener('submit', addElementsItem);

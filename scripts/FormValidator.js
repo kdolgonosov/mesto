@@ -11,7 +11,7 @@ export default class FormValidator {
 
   _getErrorSpan(input) {
     const inputName = input.getAttribute('name')
-    const errorSpan = document.getElementById(`${inputName}-error`)
+    const errorSpan = this._form.querySelector(`#${inputName}-error`)
     return errorSpan
   }
 
@@ -75,6 +75,6 @@ export default class FormValidator {
   }
 
   enableValidation() {
-    this._setEventListeners(this._form, this._inputSelector, this._submitButtonSelector, this._inactiveButtonClass, this._inputErrorClass, this._errorClass)    
+    this._setEventListeners()    
   }
 }
