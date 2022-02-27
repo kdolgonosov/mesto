@@ -40,7 +40,6 @@ function addElementsItem(event) {
   hidePopUp(popUpAdd)
   addForm.reset()
 }
-/**/
 
 function handleCardClick(name, link) {
   popUpPicture.querySelector('.pop-up__illustration').src = link
@@ -48,9 +47,6 @@ function handleCardClick(name, link) {
   popUpPicture.querySelector('.pop-up__caption').textContent = name
   showPopUp(popUpPicture)
 }
-
-/**/
-
 
 initialLoad()
 

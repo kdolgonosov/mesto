@@ -21,37 +21,37 @@ export default class FormValidator {
     const errorSpan = this._getErrorSpan(input)
     errorSpan.textContent = input.validationMessage
     errorSpan.classList.add(this._errorClass)
+    input.classList.add(this._inputErrorClass)
   }
 
   _hideError(input) {
     const errorSpan = this._getErrorSpan(input)
     errorSpan.classList.remove(this._errorClass)
     errorSpan.textContent = ''
+    input.classList.remove(this._inputErrorClass)
   }
 
-  _hasInvalidInput(inputs) {
-    return inputs.some((input) => {
+  _hasInvalidInput() {
+    return this._inputs.some((input) => {
       return !input.validity.valid;
     })
   }
   
-  _toggleButtonState(inputs, submitButton) {
-    if(this._hasInvalidInput(inputs)) {
-      submitButton.classList.add(this._inactiveButtonClass)
-      submitButton.setAttribute('disabled', 1)
+  _toggleButtonState() {
+    if(this._hasInvalidInput()) {
+      this._submitButton.classList.add(this._inactiveButtonClass)
+      this._submitButton.setAttribute('disabled', 1)
     } else {
-      submitButton.classList.remove(this._inactiveButtonClass)
-      submitButton.removeAttribute('disabled', 1)
+      this._submitButton.classList.remove(this._inactiveButtonClass)
+      this._submitButton.removeAttribute('disabled', 1)
     }
   }
   
   _checkInputValidity(input) {
     if (input.validity.valid) {
-      this._hideError(input)
-      input.classList.remove(this._inputErrorClass)
+      this._hideError(input)      
     } else {
         this._showError(input)
-        input.classList.add(this._inputErrorClass)
     }
   }
 
@@ -59,18 +59,16 @@ export default class FormValidator {
     this._inputs.forEach(input => {
       input.addEventListener('input', e => {
         this._checkInputValidity(input)
-        this._toggleButtonState(this._inputs, this._submitButton, this._inactiveButtonClass)
+        this._toggleButtonState()
       })
     })
-    this._toggleButtonState(this._inputs, this._submitButton, this._inactiveButtonClass)
+    this._toggleButtonState()
   }
 
   resetValidation() {
-    this._submitButton.classList.add(this._inactiveButtonClass)
-    this._submitButton.setAttribute('disabled', 1)
+    this._toggleButtonState()
     this._inputs.forEach((input) => {
       this._hideError(input)
-      input.classList.remove(this._inputErrorClass)
     })
   }
 
