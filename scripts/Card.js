@@ -1,11 +1,11 @@
-import {showPopUp} from './utils.js'
-
 export default class Card {
-  constructor(data, template) {
+  constructor(data, template, handleCardClick) {
     this._title = data.name
     this._image = data.link
     this._template = template
+    this._handleCardClick = handleCardClick
   }
+  
   
   _getTemplate() {
     const elementsItemElement = document
@@ -28,29 +28,24 @@ export default class Card {
     eventTarget.remove()
   }
 
-  _handleZoom(evt) {
-    const pictureUrl = evt.target.src
-    const pictureCaption = evt.target.nextElementSibling.firstElementChild.textContent
-    document.querySelector('.pop-up_type_picture').querySelector('.pop-up__illustration').src = pictureUrl
-    document.querySelector('.pop-up_type_picture').querySelector('.pop-up__illustration').alt = pictureCaption
-    document.querySelector('.pop-up_type_picture').querySelector('.pop-up__caption').textContent = pictureCaption
-    
-    showPopUp(document.querySelector('.pop-up_type_picture'))
-  }
-
   _setEventListeners() {
-    this._card.querySelector('.elements__footer-like').addEventListener('click', this._handleLike)
-    this._card.querySelector('.elements__delete-btn').addEventListener('click', this._handleDelete)
-    this._card.querySelector('.elements__picture').addEventListener('click', this._handleZoom)
+    this._likeButton.addEventListener('click', this._handleLike)
+    this._deleteButton.addEventListener('click', this._handleDelete)
+    this._cardImage.addEventListener('click', () => {
+      this._handleCardClick(this._title, this._image)
+    })
     }
 
   createCard() {
     this._card = this._getTemplate()
-    this._card.querySelector('.elements__picture').src = this._image
-    this._card.querySelector('.elements__picture').alt = this._title
-    this._card.querySelector('.elements__footer-caption').textContent = this._title
+    this._likeButton = this._card.querySelector('.elements__footer-like')
+    this._deleteButton = this._card.querySelector('.elements__delete-btn')
+    this._cardImage = this._card.querySelector('.elements__picture')
+    this._cardCaption = this._card.querySelector('.elements__footer-caption')
+    this._cardImage.src = this._image
+    this._cardImage.alt = this._title
+    this._cardCaption.textContent = this._title
     this._setEventListeners()
-
     return this._card
   }
 }

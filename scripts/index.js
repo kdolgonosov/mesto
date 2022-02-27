@@ -6,7 +6,7 @@ import {popUpEdit, popUpAdd, popUpPicture, showPopUpEditBtn, showPopUpAddBtn, hi
 import {showPopUp, hidePopUp} from './utils.js'
 
 function createCard(e) {
-  const card = new Card(e, '#elementsItem')
+  const card = new Card(e, '#elementsItem', handleCardClick)
   const cardElement = card.createCard()
   return cardElement
 }
@@ -40,6 +40,17 @@ function addElementsItem(event) {
   hidePopUp(popUpAdd)
   addForm.reset()
 }
+/**/
+
+function handleCardClick(name, link) {
+  popUpPicture.querySelector('.pop-up__illustration').src = link
+  popUpPicture.querySelector('.pop-up__illustration').alt = name
+  popUpPicture.querySelector('.pop-up__caption').textContent = name
+  showPopUp(popUpPicture)
+}
+
+/**/
+
 
 initialLoad()
 

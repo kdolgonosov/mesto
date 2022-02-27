@@ -5,7 +5,9 @@ const keyEscHandler = (evt) => {
 }
 
 const mouseHandler = (evt) => {
-  hidePopUp(evt.target)
+  if (evt.target === evt.currentTarget) {
+    hidePopUp(evt.target)
+  }
 }
 
 function showPopUp (target) {
