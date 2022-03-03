@@ -1,22 +1,47 @@
 import Card from './Card.js'
 import FormValidator from './FormValidator.js'
+import Section from './Section.js'
+import Popup from './Popup.js'
+import PopupWithImage from './PopupWithImage.js'
 import {popUpEdit, popUpAdd, popUpPicture, showPopUpEditBtn, showPopUpAddBtn, hidePopUpEditBtn, hidePopUpAddBtn, hidePopUpPictureBtn, 
         inputName, inputProfession, inputTitle, inputUrl, itemName, itemProfession, editForm, addForm, elementsContainer,
         initialCards, config} from './constants.js'
-import {showPopUp, hidePopUp} from './utils.js'
-
+//import {showPopUp, hidePopUp} from './utils.js'
+/*
 function createCard(e) {
-  const card = new Card(e, '#elementsItem', handleCardClick)
-  const cardElement = card.createCard()
-  return cardElement
+	const card = new Card(e, '#elementsItem', handleCardClick)
+	const cardElement = card.createCard()
+	return cardElement
 }
 
 function initialLoad() {
-  initialCards.forEach(e => {
-    const cardElement = createCard(e)
-    elementsContainer.append(cardElement)
+	initialCards.forEach(e => {
+    	const cardElement = createCard(e)
+    	elementsContainer.append(cardElement)
   })
 }
+*/
+
+// Новые константы
+const selector = '.elements'
+const popupEditSelector = '.pop-up_type_edit'
+const popupAddSelector = '.pop-up_type_add'
+const popupPictureSelector = '.pop-up_type_picture'
+
+
+const cardList = new Section({
+	items: initialCards,
+	renderer: (cardItem) => {
+		const card = new Card(cardItem, '#elementsItem', handleCardClick)
+		const cardElement = card.createCard()
+		cardList.addItem(cardElement)
+		},
+	},
+	selector
+)
+cardList.renderItems()
+
+
 
 const editFormValidation = new FormValidator(config, editForm)
 editFormValidation.enableValidation()
@@ -40,15 +65,15 @@ function addElementsItem(event) {
   hidePopUp(popUpAdd)
   addForm.reset()
 }
-
+/*
 function handleCardClick(name, link) {
   popUpPicture.querySelector('.pop-up__illustration').src = link
   popUpPicture.querySelector('.pop-up__illustration').alt = name
   popUpPicture.querySelector('.pop-up__caption').textContent = name
   showPopUp(popUpPicture)
 }
-
-initialLoad()
+*/
+//initialLoad()
 
 showPopUpEditBtn.addEventListener('click', () => {  
   inputName.value = itemName.textContent
