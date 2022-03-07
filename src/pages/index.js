@@ -8,13 +8,16 @@ import UserInfo from '../components/UserInfo.js'
 import {showPopUpEditBtn, showPopUpAddBtn, inputName, inputProfession, editForm, addForm, initialCards,
   cardListSelector, popupEditSelector, popupAddSelector, popupPictureSelector, profileSelectors, config} from '../components/constants.js'
 
+
+function addCard(data) {
+  const card = new Card(data, '#elementsItem', handleCardClick)
+	const cardElement = card.createCard()
+	cardList.addItem(cardElement)
+}
+
 const cardList = new Section({
 	items: initialCards,
-	renderer: (cardItem) => {
-		const card = new Card(cardItem, '#elementsItem', handleCardClick)
-		const cardElement = card.createCard()
-		cardList.addItem(cardElement)
-		},
+	renderer: (cardItem) => {addCard(cardItem)},
 	},
 	cardListSelector
 )
@@ -30,9 +33,7 @@ const popupAdd = new PopupWithForm(
       name: inputTitle,
       link: inputUrl
     }
-    const newCard = new Card(data, '#elementsItem', handleCardClick)
-    const newCardElement = newCard.createCard()
-    cardList.addItem(newCardElement)
+    addCard(data)
   }
   )
 popupAdd.setEventListeners()
