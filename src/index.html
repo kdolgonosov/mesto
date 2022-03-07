@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="pages/index.css">
   <title>Mesto</title>
 </head>
 <body class="main">
@@ -13,7 +12,7 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="images/avatar.jpg" alt="Аватар профиля"> 
+        <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватар профиля"> 
         <div class="profile__info">
           <h1 class="profile__info-item-name">Жак-Ив Кусто</h1>
           <h2 class="profile__info-item-profession">Исследователь океана</h2>
@@ -81,11 +80,5 @@
     </div>
 
   </div>
-  <script type="module" src="scripts/index.js"></script>
-  <script type="module" src="scripts/Card.js"></script>
-  <script type="module" src="scripts/FormValidator.js"></script>
-  <script type="module" src="scripts/Section.js"></script>
-  <script type="module" src="scripts/constants.js"></script>
-  <script type="module" src="scripts/utils.js"></script>
 </body>
 </html>
