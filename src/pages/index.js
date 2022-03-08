@@ -65,8 +65,9 @@ showPopUpAddBtn.addEventListener('click', () => {
 });
 
 showPopUpEditBtn.addEventListener('click', () => {
-  inputName.value = userInfo.getUserInfo().name
-  inputProfession.value = userInfo.getUserInfo().profession
+  const curUserInfo = userInfo.getUserInfo()
+  inputName.value = curUserInfo.name
+  inputProfession.value = curUserInfo.profession
   editFormValidation.resetValidation()
   popupEdit.open()
 });
