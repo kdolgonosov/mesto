@@ -29,6 +29,7 @@ export default class Card {
   }
   deleteCard() {
     this._card.remove()
+    this.card = null
   }
 
   _setEventListeners() {

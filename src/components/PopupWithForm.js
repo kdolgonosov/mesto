@@ -12,9 +12,10 @@ export default class PopupWithForm extends Popup {
         this._inputList = this._form.querySelectorAll('.pop-up__input')
         this._valueList = {}
         this._inputList.forEach(input => {
-            this._valueList[input.name] = input.value     
-        });
-        return this._valueList
+            this._valueList[input.name] = input.value
+        })
+        return this._valueList        
+        
     }
 
     changeSubmitCallback(newSubmitCallback) {
@@ -40,7 +41,6 @@ export default class PopupWithForm extends Popup {
         this._form.addEventListener('submit', (evt) => {
             evt.preventDefault()
             this._submitCallback(this._getInputValues())
-            this.close()
         })
     }
 }

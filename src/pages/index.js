@@ -11,20 +11,20 @@ import { api } from '../components/Api.js'
 
 
 let userId
-api.getProfile()
-  .then(res => {
-    userInfo.setUserInfo(res.name, res.about, res.avatar)
-    userId = res._id
-  })
-  .catch(err => console.log("Ошибка", err))
-
-api.getInitialCards()
-  .then(res => {
-    res.forEach(newCard => {
+Promise.all([
+  api.getProfile(),
+  api.getInitialCards()
+])
+  .then((res) => {
+    userInfo.setUserInfo(res[0].name, res[0].about, res[0].avatar)
+    userId = res[0]._id
+    res[1].reverse()
+    res[1].forEach(newCard => {
       addCard(newCard)
     })
   })
   .catch(err => console.log("Ошибка", err))
+
 
 function addCard(data) {
   const card = new Card(
@@ -39,9 +39,9 @@ function addCard(data) {
           .then(() => {
             card.deleteCard()
           })
+          .finally(() => popupConfirm.close())
           .catch(err => console.log("Ошибка", err))
       })
-      popupConfirm.setEventListeners()
     },
     (id) => {
       if(card.isLiked()) {
@@ -75,6 +75,7 @@ cardList.renderItems()
 const userInfo = new UserInfo(profileSelectors)
 
 const popupWithImage = new PopupWithImage(popupPictureSelector)
+popupWithImage.setEventListeners()
 const popupAdd = new PopupWithForm(
   popupAddSelector,
   ({ inputTitle, inputUrl }) => {
@@ -101,7 +102,10 @@ const popupAdd = new PopupWithForm(
         }
         return data
       })
-      .then(data => addCard(data))
+      .then(data => {
+        popupAdd.close()
+        addCard(data)
+      })
       .catch(err => console.log("Ошибка", err))
       .finally(() => popupAdd.toggleSubmitState(false, "Создать"))   
   }
@@ -114,10 +118,12 @@ const popupEdit = new PopupWithForm(
   ({ inputName, inputProfession }) => {
     popupEdit.toggleSubmitState(true)
     api.editProfile(inputName, inputProfession)
-      .then((res) => userInfo.setUserInfo(res.name, res.about, res.avatar))
+      .then((res) => {
+        popupEdit.close()
+        userInfo.setUserInfo(res.name, res.about, res.avatar)
+      })
       .catch(err => console.log("Ошибка", err))
       .finally(() => popupEdit.toggleSubmitState(false, "Сохранить"))
-    popupEdit.close()
   }
 )
 popupEdit.setEventListeners()
@@ -129,10 +135,11 @@ popupConfirm.setEventListeners()
 
 const popupChangeAvatar = new PopupWithForm(
   popupChangeAvatarSelector,
-  ({ inputUrl }) => {
+  ({ inputAvatarUrl }) => {
     popupChangeAvatar.toggleSubmitState(true)
-    api.changeAvatar(inputUrl)
+    api.changeAvatar(inputAvatarUrl)
       .then(res => {
+        popupChangeAvatar.close()
         userInfo.setUserInfo(res.name, res.about, res.avatar)
       })
       .catch(err => console.log("Ошибка", err))
@@ -143,7 +150,6 @@ popupChangeAvatar.setEventListeners()
 
 function handleCardClick(name, link) {
   popupWithImage.open(name,link)
-  popupWithImage.setEventListeners()
 }
 const editFormValidation = new FormValidator(config, editForm)
 editFormValidation.enableValidation()
@@ -152,12 +158,12 @@ addFormValidation.enableValidation()
 const changeAvatarFormValidation = new FormValidator(config, changeAvatarForm)
 changeAvatarFormValidation.enableValidation()
 
-showPopUpAddBtn.addEventListener('click', () => {
+showPopUpAddBtn.addEventListener('mousedown', () => {
   addFormValidation.resetValidation()
   popupAdd.open()
 });
 
-showPopUpEditBtn.addEventListener('click', () => {
+showPopUpEditBtn.addEventListener('mousedown', () => {
   const curUserInfo = userInfo.getUserInfo()
   inputName.value = curUserInfo.name
   inputProfession.value = curUserInfo.profession
@@ -165,7 +171,7 @@ showPopUpEditBtn.addEventListener('click', () => {
   popupEdit.open()
 });
 
-showPopUpChgAvt.addEventListener('click', () => {
+showPopUpChgAvt.addEventListener('mousedown', () => {
   const curUserInfo = userInfo.getUserInfo()
   inputAvatar.value = curUserInfo.avatar.src
   changeAvatarFormValidation.resetValidation()
