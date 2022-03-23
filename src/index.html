@@ -12,10 +12,12 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватар профиля"> 
+        <div class="profile__avatar-wrapper">
+          <img class="profile__avatar" src="" alt="Аватар профиля">
+        </div>
         <div class="profile__info">
-          <h1 class="profile__info-item-name">Жак-Ив Кусто</h1>
-          <h2 class="profile__info-item-profession">Исследователь океана</h2>
+          <h1 class="profile__info-item-name"></h1>
+          <h2 class="profile__info-item-profession"></h2>
         </div>
         <button class="profile__edit-button" type="button"></button>        
         <button class="profile__add-button" type="button"></button>
@@ -36,7 +38,10 @@
         <img class="elements__picture">
         <div class="elements__footer">
           <h4 class="elements__footer-caption"></h4>
-          <button class="elements__footer-like" type="button"></button>
+          <div class="elements__footer-like-wrapper">
+            <button class="elements__footer-like" type="button"></button>
+            <span class="elements__footer-like-counter"></span>
+          </div>
         </div>
       </div>
     </template>
@@ -76,6 +81,28 @@
         <button class="pop-up__close-btn pop-up__close-btn_type_picture pop-up-picture-close-btn" type="button"></button> 
         <img class="pop-up__illustration">
         <p class="pop-up__caption"></p>
+      </div>
+    </div>
+
+    <div class="pop-up pop-up_type_confirm">
+      <div class="pop-up__container pop-up__container_type_confirm">
+        <button class="pop-up__close-btn pop-up__close-btn_type_confirm" type="button"></button>
+        <h3 class="pop-up__title pop-up__title_type_confirm">Вы уверены?</h3>
+        <form class ="pop-up__form" novalidate>
+          <button class="pop-up__submit-btn pop-up__submit-btn_type_confirm" type="submit">Да</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="pop-up pop-up_type_changeAvatar">      
+      <div class="pop-up__container pop-up__container_type_change">
+        <button class="pop-up__close-btn" type="button"></button>
+        <h3 class="pop-up__title pop-up__title_type_change">Обновить аватар</h3>
+        <form class="pop-up__form changeAvatarForm" name="inputUrl" novalidate>
+          <input type="url" class="pop-up__input pop-up__input_type_avatar" name="inputUrl" placeholder="Ссылка на картинку" required>
+          <span class="pop-up__error" id="inputUrl-error"></span>
+          <button class="pop-up__submit-btn pop-up__submit-btn_type_change" type="submit">Сохранить</button>
+        </form>
       </div>
     </div>
 

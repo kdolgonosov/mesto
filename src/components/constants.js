@@ -1,47 +1,27 @@
 const showPopUpEditBtn = document.querySelector('.profile__edit-button')
 const showPopUpAddBtn = document.querySelector('.profile__add-button')
+const showPopUpChgAvt = document.querySelector('.profile__avatar-wrapper')
 
 const inputName = document.querySelector('.pop-up__input_type_name')
 const inputProfession = document.querySelector('.pop-up__input_type_profession')
+const inputAvatar = document.querySelector('.pop-up__input_type_avatar')
 
 const editForm = document.querySelector('.editForm')
 const addForm = document.querySelector('.addForm')
+const changeAvatarForm = document.querySelector('.changeAvatarForm')
 
 const cardListSelector = '.elements'
 const popupEditSelector = '.pop-up_type_edit'
 const popupAddSelector = '.pop-up_type_add'
 const popupPictureSelector = '.pop-up_type_picture'
+const popupConfirmSelector = '.pop-up_type_confirm'
+const popupChangeAvatarSelector = '.pop-up_type_changeAvatar'
+
 const profileSelectors = {
   name: '.profile__info-item-name',
-  proffesion: '.profile__info-item-profession'
+  profession: '.profile__info-item-profession',
+  profileAvatarSelector: '.profile__avatar'
 }
-
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 const config = {
   formSelector: '.pop-up__form',
@@ -52,5 +32,5 @@ const config = {
   errorClass: 'pop-up__error_visible'
 }
 
-export {showPopUpEditBtn, showPopUpAddBtn, inputName, inputProfession, editForm, addForm, initialCards,
-  cardListSelector, popupEditSelector, popupAddSelector, popupPictureSelector, profileSelectors, config}
+export {showPopUpEditBtn, showPopUpAddBtn, showPopUpChgAvt, inputName, inputProfession, inputAvatar, editForm, addForm, changeAvatarForm,
+  cardListSelector, popupEditSelector, popupAddSelector, popupPictureSelector, popupConfirmSelector, popupChangeAvatarSelector, profileSelectors, config}
